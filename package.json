@@ -1,0 +1,36 @@
+{
+  "name": "h-lang",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=21.5.0"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run tsc",
+    "clean": "rm -rf dist",
+    "format": "npm run -- prettier --write",
+    "lint": "eslint .",
+    "nodemon": "nodemon --watch dist",
+    "prettier": "prettier --ignore-path .gitignore .",
+    "start": "node --enable-source-maps .",
+    "start:dev": "node --enable-source-maps --watch --watch-preserve-output .",
+    "dev": "npm run build && npm run tsc:watch & npm run start:dev",
+    "test": "npm run lint && npm run test:format",
+    "test:format": "npm run prettier -- --check",
+    "tsc": "tsc",
+    "tsc:watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "3.1.1",
+    "typescript": "~5.3.2"
+  }
+}
