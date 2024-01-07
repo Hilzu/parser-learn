@@ -1,0 +1,33 @@
+export enum Op {
+  Assign = "=",
+  Or = "||",
+  And = "&&",
+  LessThan = "<",
+  GreaterThan = ">",
+  LessThanOrEqual = "<=",
+  GreaterThanOrEqual = ">=",
+  Equal = "==",
+  NotEqual = "!=",
+  Add = "+",
+  Subtract = "-",
+  Multiply = "*",
+  Divide = "/",
+  Modulo = "%",
+}
+
+export const precedence: Record<Op, number> = {
+  [Op.Assign]: 1,
+  [Op.Or]: 2,
+  [Op.And]: 3,
+  [Op.LessThan]: 7,
+  [Op.GreaterThan]: 7,
+  [Op.LessThanOrEqual]: 7,
+  [Op.GreaterThanOrEqual]: 7,
+  [Op.Equal]: 7,
+  [Op.NotEqual]: 7,
+  [Op.Add]: 10,
+  [Op.Subtract]: 10,
+  [Op.Multiply]: 20,
+  [Op.Divide]: 20,
+  [Op.Modulo]: 20,
+} as const;
