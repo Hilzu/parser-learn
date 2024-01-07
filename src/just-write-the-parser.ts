@@ -47,18 +47,16 @@ class Parser {
   readonly #input: string;
   #pos = 0;
   #peek = "";
-  #indent = 0;
 
   static parse(input: string) {
     const parser = new Parser(input);
-    const res = parser.#expression(0);
+    const res = parser.#expression();
     assert(!parser.#peek, `unexpected input: ${parser.#peek}`);
     return res;
   }
 
   constructor(input: string) {
     this.#input = input;
-    this.#indent = this.#whitespace();
     this.#read();
   }
 
@@ -75,9 +73,6 @@ class Parser {
       this.#pos++;
     }
     this.#peek = this.#input[this.#pos++];
-    if (this.#peek === "\n") {
-      this.#indent = this.#whitespace();
-    }
   }
 
   #next() {
@@ -100,7 +95,7 @@ class Parser {
   #factor() {
     if (this.#peek === "(") {
       this.#next();
-      const n = this.#expression(this.#indent);
+      const n = this.#expression();
       this.#expect(")");
       return n;
     } else {
@@ -125,7 +120,7 @@ class Parser {
     return n;
   }
 
-  #expression(indent: number) {
+  #expression() {
     return this.#binop(0);
   }
 }

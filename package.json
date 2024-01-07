@@ -12,15 +12,15 @@
   "scripts": {
     "build": "npm run clean && npm run tsc",
     "clean": "rm -rf dist",
+    "dev": "npm run build && (npm run tsc:watch & npm run start:dev)",
     "format": "npm run -- prettier --write",
     "lint": "eslint .",
-    "nodemon": "nodemon --watch dist",
     "prettier": "prettier --ignore-path .gitignore .",
     "start": "node --enable-source-maps .",
     "start:dev": "node --enable-source-maps --watch --watch-preserve-output .",
-    "dev": "npm run build && (npm run tsc:watch & npm run start:dev)",
-    "test": "npm run lint && npm run test:format",
+    "test": "npm run lint && npm run test:format && npm run test:types",
     "test:format": "npm run prettier -- --check",
+    "test:types": "tsc --noEmit",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch"
   },
